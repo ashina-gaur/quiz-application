@@ -1,0 +1,89 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='index2c.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='styles.css')}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+   
+{% block content %}
+<body class="bg-nav">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" style="justify-content: center;">TEST WINDOW</a>
+          </div>
+          
+        </div>
+      </nav>
+      <h2 class="heading">Rest</h2>
+      <br>
+      <div style="position: fixed;">
+      <h2 style="margin-top: 30px; margin-left: 600px; font-family: 'Rubik', sans-serif; position: fixed;">Time Left :<span class="timer" id="timer" ></span></h2>
+      <progress max="300" value="0" class="progress progress--rest" id="progressBar" style="margin-left: 600px; position: fixed; width:300px"></progress>
+      
+      <script type="application/javascript">
+          const timerElement = document.getElementById("timer");
+          const progressBar = document.getElementById("progressBar")
+  
+          var timerCounter = progressBar.max;
+  
+          const interval = setInterval(() => {
+              if (timerCounter <= 1) {
+                  window.location.href = "{{ url_for('complete') }}";
+                  clearInterval(interval);
+              }
+  
+              timerCounter = timerCounter - 1;
+              
+              timerElement.innerText = timerCounter + "s";
+              progressBar.value = timerCounter;
+          }, 1000);
+      </script>
+  </div>
+<div class="row" style="margin-top:100px">
+    <div class="col-md-8" style="background-color: 	#FFE4B5 ">
+        <h1 style="text-align: center;"></h1>
+        
+        <form action="/submitquiz" class="opacity-50" method="post" style="font-family: 'Rubik', sans-serif; margin-left: 100px;" >
+            
+            {% for question in questions_list %}
+            <h3>
+                Q : {{question.question}}<br>
+                <br>
+                <input type="radio" name="{{question.q_id}}" value="{{question.option1}}" required>{{question.option1}}<br>
+                <input type="radio" name="{{question.q_id}}" value="{{question.option2}}" required>{{question.option2}}<br>
+                <input type="radio" name="{{question.q_id}}" value="{{question.option3}}" required>{{question.option3}}<br>
+            </h3>
+           
+            {% endfor %}
+            
+            <br><br> 
+            
+            <button class="btn btn-success" type="submit"   name="submitform" value="submit" id ="hoverinbtn" style="border-radius:50px;width:200px">Submit</button>
+            </form>
+            
+    </div>
+    <div class="col-md-4" style=" border-radius: 2px; border-color: black;">
+        <div style="border-radius: 2px; border-color: black; position: fixed;"><img src=" {{ url_for('video') }}"  style="border: 5px solid #555;width:425px;">  
+            
+            <li><a href="{{ url_for('complete') }}">.</a></li>
+        </div>  
+    </div>
+    </div>
+</body>
+
+
+
+{% endblock %}

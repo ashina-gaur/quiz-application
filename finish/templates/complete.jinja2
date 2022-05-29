@@ -1,0 +1,38 @@
+{% extends "base.jinja2" %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <body class="bg-nav" style="background-color="pink">
+    <div>
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" style="text-align: center;">                   RESULT WINDOW</a>
+          </div>
+          
+        </div>
+      </nav>
+      </div>
+      <br>
+      <div style="text-align: center; background:#2596be; color:whitesmoke">
+      <br>
+      <h2 class="heading" >Congratulations! You have successfully completed the assessment.</h2>
+    <h1 class="heading" >Score : {{correct_count}}/10</h1>
+    </div>
+   
+    <img  class="main-img" style="height:400px; width:400px; margin-top: 70px; margin-left:560px"  src="static/images/finish-line.png" alt="bookshelf image">
+     <a href="{{ url_for('dashboard') }}" style="height: 300px ; width:300px; text-align: center;"><button type="button" class="block" style="color:white">Go Back to Portal</button>
+</a>
+    </body>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+<head>
+    <title>Result</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="bg-nav">
+    <div class="header"><h1 class="header__logo">Result</h1></div>
+    <main class="main">
+        {% block content %}
+
+        {% endblock %}
+    </main>
+</body>

@@ -1,0 +1,19 @@
+{% extends "base.jinja2" %}
+
+{% block content %}
+    <h2 class="heading">Welcome</h2>
+
+    <form class="form" method="post">
+        
+
+            <label class="form__label" for="rest">Rest:</label>
+            <input class="form__input" type="number" name="rest" id="rest" value="300"/>
+            <span class="units">(seconds)</span>
+
+
+            
+        <div class="form__button-container">
+            <button class="button" type="submit">Start!</button>
+        </div>
+    </form>
+{% endblock %}
